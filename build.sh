@@ -12,7 +12,7 @@
 # Eclipse Foundation. All other trademarks are the property of their respective owners.
 #
 
-helm plugin install --version "0.2.11" https://github.com/quintush/helm-unittest
+helm plugin install --version "0.2.11" https://github.com/quintush/helm-unittest --verify=false
 
 set -e
 
@@ -21,8 +21,11 @@ helm lint ./nxrm-aws-resiliency
 helm lint ./nexus-repository-manager
 
 # unit test
-(cd ./nxrm-aws-resiliency; helm unittest -3 -t junit -o test-output.xml .)
-(cd ./nexus-repository-manager; helm unittest -3 -t junit -o test-output.xml .)
+#(cd ./nxrm-aws-resiliency; helm unittest -3 -t junit -o test-output.xml .)
+#(cd ./nexus-repository-manager; helm unittest -3 -t junit -o test-output.xml .)
+(cd ./nxrm-aws-resiliency; helm unittest -t junit -o test-output.xml .)
+(cd ./nexus-repository-manager; helm unittest -t junit -o test-output.xml .)
+
 
 # package the charts into tgz archives
 helm package ./nxrm-aws-resiliency --destination docs
