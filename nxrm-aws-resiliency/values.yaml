@@ -23,7 +23,7 @@ deployment:
   container:
     image:
       repository: sonatype/nexus3
-      tag: 3.87.2-java17-ubi
+      tag: 3.87.2
     containerPort: 8081
     pullPolicy: IfNotPresent
     env:
